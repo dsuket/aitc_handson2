@@ -1,0 +1,33 @@
+
+.ui-header .ui-title {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#form {
+	margin-bottom: 20px;
+}
+#form .field > label {
+	display: inline-block;
+	width: 80px;
+}
+#form .field div.ui-select, #form div.ui-input-text {
+	display: inline-block;
+	width: 180px;
+}
+
+#form .buttons {
+	text-align: center;
+}
+
+#jmalist .datetime {
+	font-weight: normal;
+	color: #999;	
+	padding: 10px;
+}
+
+#detail-list {
+	margin: 5px;
+	padding: 0;
+	list-style: none;
+}

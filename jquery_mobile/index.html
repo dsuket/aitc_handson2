@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>AITC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+	<link rel="stylesheet" href="style.css">
+
+	<!-- 先に読み込まないとレイアウトが一瞬崩れる -->
+	<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+
+</head>
+<body>
+
+<div id="page-top" data-role="page">
+
+	<div data-role="header">
+		<h1>防災情報 速報</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<div id="form">
+			<div class="area field">
+				<label for="areaname">エリア:</label>
+				<select name="areaname" id="areaname">
+				   <option value="東京都">東京都</option>
+				   <option value="神奈川県">神奈川県</option>
+				   <option value="千葉県">千葉県</option>
+				   <option value="埼玉県">埼玉県</option>
+				</select>
+			</div>
+			<div class="start_date field">
+				<label for="start_date" class="select">開始日:</label>
+				<input type="date" name="start_date" id="start_date" value="">
+			</div>
+			<div class="end_date field">
+				<label for="end_date" class="select">終了日:</label>
+				<input type="date" name="end_date" id="end_date" value="">
+			</div>
+
+			<div class="buttons">
+				<a id="load-btn" href="#" data-role="button" data-inline="true" data-theme="b">OK</a>
+			</div>
+		</div>
+		<ul data-role="listview" id="jmalist">
+		</ul>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+
+<div id="page-detail" data-role="page">
+	<div data-role="header">
+		<a href="#" data-rel="back">戻る</a>
+		<h1 id="detail-title">詳細</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<div id="detail-time"></div>
+		<ul id="detail-list"></ul>
+	</div><!-- /content -->
+		
+</div><!-- /page -->
+
+<!-- レイアウトに関係ないスクリプトは後で読む -->
+<script src="js/app.js" ></script>
+
+</body>
+</html>
