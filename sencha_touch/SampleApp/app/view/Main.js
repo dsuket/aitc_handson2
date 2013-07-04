@@ -1,18 +1,13 @@
 Ext.define('SampleApp.view.Main', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.navigation.View',
     xtype: 'main',
     requires: [
         'Ext.TitleBar'
     ],
     config: {
         items: [{
-            items: {
-                docked: 'top',
-                xtype: 'titlebar',
-                title: '防災情報 速報',
-            },
-
-            html: 'Hello Sencha Touch'
+            xtype: 'my-formpanel',
+            title: '防災情報 速報'
         }]
     }
 });

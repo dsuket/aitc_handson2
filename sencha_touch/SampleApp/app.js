@@ -26,8 +26,23 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
+    models: [
+        'JmaData'
+    ],
+
     views: [
+        'Main',
+        'FormPanel',
+        'JmaList',
+        'Detail'
+    ],
+
+    controllers: [
         'Main'
+    ],
+
+    stores: [
+        'JmaStore'
     ],
 
     icon: {
@@ -49,6 +64,9 @@ Ext.application({
     },
 
     launch: function() {
+        // TODO: サーバー対応したら削除
+        Ext.Ajax.setUseDefaultXhrHeader(false);
+
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 

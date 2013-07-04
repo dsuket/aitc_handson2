@@ -8,3 +8,39 @@
 
 // Examples of using the icon mixin:
 // @include icon('user');
+
+.jma-list {
+	.jma-item {
+		.title {
+
+		}
+		.datetime {
+			color: #CCC;
+			font-size: smaller;
+			text-align: right;
+		}
+	}
+}
+
+.detail-contents {
+	padding: 10px;
+
+	.title {
+		margin: 5px 0;
+		font-weight: bold;
+		font-size: larger;		
+	}
+	.datetime {
+		color: #999;
+		font-size: smaller;
+		text-align: right;
+	}
+	.headlines {
+		list-style: none;
+		margin: 10px 5px;
+		padding: 0;
+		.text {
+
+		}
+	}
+}
