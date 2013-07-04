@@ -2,62 +2,71 @@
 
 	var WEATHER_URL = "http://cloud.projectla.jp/jmaxmldb/search";
 
-	// トップページの初期化
-	// live ではなく、on を使う
+	/******************************************************
+	 * トップページの初期化
+	 *   live ではなく、on を使う
+	 */
 	$(document).on('pageinit', '#page-top', function(pev) {
 		console.log("init #page-top");
-		var $areaname = $("#areaname"),
-			$startDate = $("#start_date"),
-			$endDate = $("#end_date"),
-			$list = $("#jmalist"),
-			$detail = $('#page-detail'),
-			$detailTitle = $('#detail-title'),
-			$detailTime = $('#detail-time'),
-			$detailList = $('#detail-list');
+		var $startDate = $("#start_date"),
+			$endDate = $("#end_date");
+
+		// エリア名を帰す
+		var getAreaname = function() {
+			return $("#areaname").val();
+		};
+		// 日付リストを返す
+		var getDatetime = function() {
+			return [
+				$startDate.val() + " 00:00:00",
+				$endDate.val() + " 23:59:59"
+			];
+		};
+
+		// 防災情報を読み込む
+		var loadJmaxmldb = function(areaname, datetime) {
+			var param = jQuery.param({
+				areaname: areaname,
+				datetime: datetime,
+				limit: 10
+			}, true);
+			$.mobile.loading('show', {
+				text: "loading...",
+				textVisible: true
+			});
+			$.get(WEATHER_URL, param, showListPage)
+				.fail(loadFail);
+		};
+
+		// list ページを表示
+		var showListPage = function(data) {
+			var $listPage = $("#page-list");
+			$.mobile.loading('hide');
+			data.areaname = getAreaname();
+			$listPage[0].__data__ = data;
+			$.mobile.changePage($listPage, {transition: "slide"});		
+		};
 
 		// 日付を初期化
 		var now = new Date();
 		$startDate.val(formatDate(addDay(now, -7)));
 		$endDate.val(formatDate(now));
 
-		// エリア名を帰す
-		var getAreaname = function() {
-			return $areaname.val();
-		};
-		// 日付リストを返す
-		var getDatetime = function() {
-			var startDate = $startDate.val() + " 00:00:00",
-				endDate = $endDate.val() + " 23:59:59";
-			return [startDate, endDate];
-		};
+		// OKボタン
+		$('#load-btn').on('tap', function(){
+			loadJmaxmldb(getAreaname(), getDatetime());
+		});
+	});
 
-		// 防災情報を読み込む
-		var loadJmaxmldb = function() {
-			var data = {
-				areaname: getAreaname(),
-				datetime: getDatetime(),
-				limit: 10
-			};
-			var param = jQuery.param(data, true);
-			$.mobile.loading('show', {
-				text: "loading...",
-				textVisible: true
-			});
-			$.get(WEATHER_URL, param, refreshList)
-				.fail(loadFail);
-		};
-		var loadFail = function(data, status){
-			$.mobile.loading('hide');
-			alert(status + ": 防災情報の読み込みに失敗しました。");
-		};
+	/******************************************************
+	 * listページの初期化
+	 */
+	$(document).on('pageinit', '#page-list', function(pev) {
+		console.log("init #page-list");
+		var $this = $(this),
+			$title = $this.find('.ui-header .title'),
+			$list = $("#jmalist");
 
-		// リストを更新
-		var refreshList = function(data) {
-			$.mobile.loading('hide');
-			$list.empty();
-			insertData(data);
-		};
-		// データを挿入
 		var insertData = function(data) {
 			console.log("insertData", data);
 			data.data.forEach(function(d){
@@ -68,19 +77,21 @@
 		};
 		// リストアイテムを作成
 		var createItem = function(data) {
-			var item = $('<li class="list-item"><span class="datetime">'+data.datetime+'</span><a href="#">' + data.title + '</a></li>');
+			var item = $(
+	             '<li class="list-item">' + 
+	             	'<span class="datetime">' + data.datetime + '</span>' +
+             		'<a href="#">' + data.title + '</a>' + 
+         		'</li>'
+	        );
 			item[0].__data__ = data;
 			return item;
 		};
 		// read moreを作成
 		var createMore = function(next){
-			if (!next) {
-				return null;
-			}
-			return $('<li id="readmore" data-icon="false"><a href="#">Read more..</a></li>')
-				.on('tap', function(ev){
-					readMore(next);
-				});
+			return next ? $('<li id="readmore" data-icon="false"><a href="#">Read more..</a></li>')
+					.on('tap', function(ev){
+						readMore(next);
+					}) : null;
 		};
 		var readMore = function(next) {
 			$.mobile.loading('show', {
@@ -98,10 +109,32 @@
 
 		// リストアイテムをタップした処理
 		var onTapItem = function(ev) {
-			// console.log("onTapItem", this, this.__data__);
-			updateDetail(this.__data__);
-			$.mobile.changePage($detail, {transition: "slide"});
+			var $detailPage = $('#page-detail');
+			$detailPage[0].__data__ = this.__data__;
+			$.mobile.changePage($detailPage, {transition: "slide"});
 		};
+
+		$this.on('pageshow', function(){
+			var data = this.__data__;
+			$list.empty();
+			if (data) {
+				$title.html(data.areaname + " 防災情報");
+				insertData(data);
+			}
+		});
+		$list.on('tap', '.list-item', onTapItem);
+	});
+
+	/******************************************************
+	 * 詳細ページの初期化
+	 */
+	$(document).on('pageinit', '#page-detail', function(pev) {
+		console.log("init #page-detail");
+		var $this = $(this),
+			$detailTitle = $this.find('.ui-header .title'),
+			$detailTime = $('#detail-time'),
+			$detailList = $('#detail-list');
+
 		var updateDetail = function(data) {
 			$detailTitle.html(data.title);
 			$detailTime.html(data.datetime);
@@ -111,9 +144,16 @@
 			});
 		};
 
-		$('#load-btn').on('tap', loadJmaxmldb);
-		$list.on('tap', '.list-item', onTapItem);
+		$this.on('pageshow', function(){
+			var data = this.__data__;
+			data && updateDetail(data);
+		});		
 	});
+
+	var loadFail = function(data, status){
+		$.mobile.loading('hide');
+		alert(status + ": 防災情報の読み込みに失敗しました。");
+	};
 
 
 	var formatDate = function(date) {

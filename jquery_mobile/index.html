@@ -5,12 +5,12 @@
 	<title>AITC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
+	<link rel="stylesheet" href="css/style.css">
 
 	<!-- 先に読み込まないとレイアウトが一瞬崩れる -->
-	<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+	<script src="js/lib/jquery-2.0.2.min.js"></script>
+	<script src="js/lib/jquery.mobile-1.3.1.min.js"></script>
 
 </head>
 <body>
@@ -18,7 +18,7 @@
 <div id="page-top" data-role="page">
 
 	<div data-role="header">
-		<h1>防災情報 速報</h1>
+		<h1 class="title">防災情報 速報</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -45,17 +45,23 @@
 				<a id="load-btn" href="#" data-role="button" data-inline="true" data-theme="b">OK</a>
 			</div>
 		</div>
-		<ul data-role="listview" id="jmalist">
-		</ul>
 	</div><!-- /content -->
 
+</div><!-- /page -->
+
+<div id="page-list" data-role="page">
+	<div data-role="header">
+		<a href="#" data-rel="back">戻る</a>
+		<h1 class="title">リスト</h1>
+	</div><!-- /header -->
+	<ul data-role="listview" id="jmalist"></ul>
 </div><!-- /page -->
 
 
 <div id="page-detail" data-role="page">
 	<div data-role="header">
 		<a href="#" data-rel="back">戻る</a>
-		<h1 id="detail-title">詳細</h1>
+		<h1 class="title">詳細</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">
