@@ -7,18 +7,6 @@ Ext.define('SampleApp.store.JmaStore', {
 	},
 
     /**
-     * 初期化
-     * totalの初期化
-     */
-    initialize: function() {
-        this.callParent(arguments);
-        this.on('load', function(store, records){
-        	var total = Ext.isEmpty(records) ? 0 : undefined;
-        	store.setTotalCount(records);
-        });
-    },
-
-    /**
      * パラメータを付けてロード
      */
     load: function(options, scope) {

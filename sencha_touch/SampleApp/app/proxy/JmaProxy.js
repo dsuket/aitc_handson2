@@ -8,7 +8,8 @@ Ext.define('SampleApp.proxy.JmaProxy', {
         pageParam: false,
         reader: {
             type: "json",
-            rootProperty: "data"
+            rootProperty: "data",
+            totalProperty: "paging.totalCount"
         }
     }
 
