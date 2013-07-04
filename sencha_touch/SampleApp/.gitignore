@@ -1,4 +1,5 @@
 #touch
 archive
-build
+build/SampleApp/package
+build/SampleApp/native
 .sass-cache
