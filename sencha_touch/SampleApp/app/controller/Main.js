@@ -32,7 +32,7 @@ Ext.define('SampleApp.controller.Main', {
 		var me = this,
 			list = me.getList();
 
-		cmp.setTitle(opt.areaname + " 防災情報");
+		list.setTitle(opt.areaname + " 防災情報");
 		this.getMain().push(list);
 		list.search({
 			areaname: opt.areaname,
