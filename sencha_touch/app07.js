@@ -27,22 +27,22 @@ Ext.application({
     ],
 
     models: [
-        'JmaData'
+        'JmaData01'
     ],
 
     stores: [
-        'JmaStore'
+        'JmaStore01'
     ],
 
     views: [
         'Main',
-        'FormPanel',
-        'JmaList',
-        'Detail'
+        'FormPanel03',
+        'JmaList03',
+        'Detail01',
     ],
 
     controllers: [
-        'Main'
+        'Main02'
     ],
 
     icon: {

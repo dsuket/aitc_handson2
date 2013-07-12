@@ -26,23 +26,14 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    models: [
-        'JmaData'
-    ],
-
-    stores: [
-        'JmaStore'
-    ],
-
     views: [
         'Main',
-        'FormPanel',
-        'JmaList',
-        'Detail'
+        'FormPanel03',
+        'JmaList01',
     ],
 
     controllers: [
-        'Main'
+        'Main01'
     ],
 
     icon: {

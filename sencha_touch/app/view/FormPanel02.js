@@ -1,4 +1,4 @@
-Ext.define('SampleApp.view.FormPanel', {
+Ext.define('SampleApp.view.FormPanel02', {
     extend: 'Ext.form.Panel',
     xtype: 'my-formpanel',
     requires: [
@@ -37,16 +37,11 @@ Ext.define('SampleApp.view.FormPanel', {
             text: 'OK',
             itemId: 'okbtn',
             ui: 'action',
-            // ui: 'test1',
             width: 100,
-            margin: "0 auto"
-        }],
-        control: {
-            '#okbtn': {
-                tap: function(){
-                    this.fireEvent('dosearch', this.getValues());
-                }
+            margin: "0 auto",
+            handler: function() {
+                console.log("tap button!");
             }
-        }
+        }]
     }
 });

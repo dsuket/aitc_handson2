@@ -22,7 +22,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/jqm', express.static(path.join(__dirname, '../jquery_mobile')));
-app.use('/sencha', express.static(path.join(__dirname, '../sencha_touch/SampleApp')));
+app.use('/sencha', express.static(path.join(__dirname, '../sencha_touch')));
 
 // development only
 if ('development' == app.get('env')) {

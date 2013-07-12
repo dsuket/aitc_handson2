@@ -10,9 +10,11 @@
 // @include icon('user');
 
 .jma-list {
+	.x-list-item {
+		// @include background-image(linear-gradient(white, #ccc, #eee));
+	}
 	.jma-item {
 		.title {
-
 		}
 		.datetime {
 			color: #CCC;
@@ -44,3 +46,9 @@
 		}
 	}
 }
+
+// ui
+// @include sencha-button-ui('test1', #ccffff, 'glossy');
+
+
+

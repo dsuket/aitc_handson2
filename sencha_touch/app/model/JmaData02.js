@@ -1,4 +1,4 @@
-Ext.define('SampleApp.model.JmaData', {
+Ext.define('SampleApp.model.JmaData02', {
     extend: 'Ext.data.Model',
     requires: [
     	'SampleApp.proxy.JmaProxy'

@@ -1,11 +1,11 @@
-Ext.define('SampleApp.store.JmaStore', {
+Ext.define('SampleApp.store.JmaStore02', {
     extend: 'Ext.data.Store',
     config: {
-	    model: 'SampleApp.model.JmaData',
+        model: 'SampleApp.model.JmaData02',
         storeId: 'jmaStore',
-	    pageSize: 20,
-	    params: null
-	},
+        pageSize: 20,
+        params: null
+    },
 
     /**
      * パラメータをセットしてロード
@@ -15,7 +15,7 @@ Ext.define('SampleApp.store.JmaStore', {
         me.setParams(params);
         me.load(options, scope);
     },
-    
+
     /**
      * パラメータを付けてロード
      */

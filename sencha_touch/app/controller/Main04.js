@@ -1,4 +1,4 @@
-Ext.define('SampleApp.controller.Main', {
+Ext.define('SampleApp.controller.Main04', {
 	extend: 'Ext.app.Controller',
 	config: {
 		refs: {

@@ -26,23 +26,9 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    models: [
-        'JmaData'
-    ],
-
-    stores: [
-        'JmaStore'
-    ],
-
     views: [
-        'Main',
-        'FormPanel',
-        'JmaList',
-        'Detail'
-    ],
-
-    controllers: [
-        'Main'
+        'Main02',
+        'FormPanel01',
     ],
 
     icon: {
@@ -68,7 +54,7 @@ Ext.application({
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('SampleApp.view.Main'));
+        Ext.Viewport.add(Ext.create('SampleApp.view.Main02'));
     },
 
     onUpdated: function() {

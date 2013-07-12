@@ -12,8 +12,8 @@
     "114": "resources/icons/Icon@2x.png",
     "144": "resources/icons/Icon~ipad@2x.png"
   },
-  "inputPath": "/Users/takaoka/Dropbox/03-dev/aitc/handson2/aitc_handson2/sencha_touch/SampleApp/build/SampleApp/package",
-  "outputPath": "/Users/takaoka/Dropbox/03-dev/aitc/handson2/aitc_handson2/sencha_touch/SampleApp/build/SampleApp/native",
+  "inputPath": "/Users/takaoka/Dropbox/03-dev/aitc/handson2/aitc_handson2/sencha_touch/build/SampleApp/package",
+  "outputPath": "/Users/takaoka/Dropbox/03-dev/aitc/handson2/aitc_handson2/sencha_touch/build/SampleApp/native",
   "configuration": "Debug",
   "platform": "iOSSimulator",
   "deviceType": "Universal",

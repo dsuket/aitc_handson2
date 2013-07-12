@@ -1,4 +1,4 @@
-Ext.define('SampleApp.view.Main', {
+Ext.define('SampleApp.view.Main04', {
     extend: 'Ext.navigation.View',
     xtype: 'main',
     requires: [
@@ -6,8 +6,7 @@ Ext.define('SampleApp.view.Main', {
     ],
     config: {
         items: [{
-            xtype: 'my-formpanel',
-            title: '防災くん'
+            xtype: 'my-jmalist'
         }]
     }
 });

@@ -1,17 +1,10 @@
-Ext.define('SampleApp.model.JmaData', {
+Ext.define('SampleApp.model.JmaData01', {
     extend: 'Ext.data.Model',
-    requires: [
-    	'SampleApp.proxy.JmaProxy'
-    ],
     config: {
         fields: [
             {name: 'title',    type: 'string'},
             {name: 'datetime', type: 'date'},
             {name: 'headline', type: 'auto'}
-        ],
-
-	    proxy: {
-	    	xtype: 'jmaproxy',
-	    }
+        ]
     }
 });

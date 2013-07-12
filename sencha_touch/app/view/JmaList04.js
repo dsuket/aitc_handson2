@@ -1,4 +1,4 @@
-Ext.define('SampleApp.view.JmaList', {
+Ext.define('SampleApp.view.JmaList04', {
     extend: 'Ext.dataview.List',
     xtype: 'my-jmalist',
     requires: [

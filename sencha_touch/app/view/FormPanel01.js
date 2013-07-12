@@ -1,4 +1,4 @@
-Ext.define('SampleApp.view.FormPanel', {
+Ext.define('SampleApp.view.FormPanel01', {
     extend: 'Ext.form.Panel',
     xtype: 'my-formpanel',
     requires: [
@@ -22,31 +22,22 @@ Ext.define('SampleApp.view.FormPanel', {
             }, {
                 xtype: 'datepickerfield',
                 label: '開始日',
-                dateFormat: 'Y-m-d',
                 name: 'startdate',
-                value: Ext.Date.add(new Date(), Ext.Date.DAY, -6)
             }, {
                 xtype: 'datepickerfield',
                 label: '終了日',
-                dateFormat: 'Y-m-d',
                 name: 'enddate',
-                value: new Date()
             }]
         }, {
             xtype: 'button',
             text: 'OK',
             itemId: 'okbtn',
             ui: 'action',
-            // ui: 'test1',
             width: 100,
-            margin: "0 auto"
-        }],
-        control: {
-            '#okbtn': {
-                tap: function(){
-                    this.fireEvent('dosearch', this.getValues());
-                }
+            margin: "0 auto",
+            handler: function() {
+                console.log("tap button!");
             }
-        }
+        }]
     }
 });

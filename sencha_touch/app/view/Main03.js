@@ -1,4 +1,4 @@
-Ext.define('SampleApp.view.Main', {
+Ext.define('SampleApp.view.Main03', {
     extend: 'Ext.navigation.View',
     xtype: 'main',
     requires: [

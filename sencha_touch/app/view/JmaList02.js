@@ -1,13 +1,8 @@
-Ext.define('SampleApp.view.JmaList', {
+Ext.define('SampleApp.view.JmaList02', {
     extend: 'Ext.dataview.List',
     xtype: 'my-jmalist',
-    requires: [
-    	'Ext.plugin.ListPaging',
-        'Ext.plugin.PullRefresh'
-    ],
     config: {
         title: '一覧',
-        store: 'jmaStore', 
         cls: 'jma-list',
 	    itemTpl: [
             '<div class="jma-item">',
@@ -15,20 +10,24 @@ Ext.define('SampleApp.view.JmaList', {
                 '<div class="title">{title}</div>',
             '</div>'
         ],
-	    plugins: [{
-            xclass: 'Ext.plugin.ListPaging',
-            autoPaging: true
-        }, {
-            xclass: 'Ext.plugin.PullRefresh',
-            fetchLatest: function() {
-                this.getList().fireEvent('reload');
-            }
-	    }],
         listeners: {
             itemtap: function(list, index, target, record, e, eOpts){
                 this.fireEvent('selectitem', record);
             }
-        }
-    }
+        },
+        data: [{
+            datetime: new Date(),
+            title: 'サンプル１',
+            headline: ['詳細情報 1-1', '詳細情報 1-2']
+        }, {
+            datetime: new Date(),
+            title: 'サンプル2',
+            headline: ['詳細情報 2-1']
+        }, {
+            datetime: new Date(),
+            title: 'サンプル3',
+            headline: ['詳細情報 3-1']
+        }]
+    },
 
 });

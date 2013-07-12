@@ -1,4 +1,4 @@
-Ext.define('SampleApp.controller.Main', {
+Ext.define('SampleApp.controller.Main03', {
 	extend: 'Ext.app.Controller',
 	config: {
 		refs: {
@@ -20,8 +20,7 @@ Ext.define('SampleApp.controller.Main', {
 				dosearch: 'doSearch'
 			},
 			list: {
-				selectitem: 'showDetail',
-				reload: 'reload'
+				selectitem: 'showDetail'
 			}
 		}
 	},
@@ -34,8 +33,10 @@ Ext.define('SampleApp.controller.Main', {
 			list = me.getList(),
 			store = list.getStore();
 
+		console.log("doSearch", opt);
 		list.setTitle(opt.areaname + " 防災情報");
 		this.getMain().push(list);
+		// search
     	store.currentPage = 1;
 		store.loadByParams({
 			areaname: opt.areaname,
@@ -44,17 +45,6 @@ Ext.define('SampleApp.controller.Main', {
 				Ext.Date.format(opt.enddate,   'Y-m-d') + " 00:00:00",
 			]
 		});
-	},
-
-	/**
-	 * 再読み込み
-	 */
-	reload: function() {
-		var me = this,
-			list = me.getList(),
-			store = list.getStore();
-    	store.currentPage = 1;
-    	store.load();
 	},
 
 	/**

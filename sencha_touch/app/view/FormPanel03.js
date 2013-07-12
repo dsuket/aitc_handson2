@@ -1,4 +1,4 @@
-Ext.define('SampleApp.view.FormPanel', {
+Ext.define('SampleApp.view.FormPanel03', {
     extend: 'Ext.form.Panel',
     xtype: 'my-formpanel',
     requires: [
@@ -37,7 +37,6 @@ Ext.define('SampleApp.view.FormPanel', {
             text: 'OK',
             itemId: 'okbtn',
             ui: 'action',
-            // ui: 'test1',
             width: 100,
             margin: "0 auto"
         }],
