@@ -1,7 +1,7 @@
 (function(){
 
 	var WEATHER_URL = "http://cloud.projectla.jp/jmaxmldb/search";
-	var listData, detailData;
+	var listData;
 
 	/******************************************************
 	 * トップページの初期化
@@ -43,8 +43,8 @@
 		var showListPage = function(data) {
 			$.mobile.loading('hide');
 			data.areaname = getAreaname();
-			listData = data;
-			$.mobile.changePage("#page-list", {transition: "slide"});		
+			listData = data
+			$.mobile.changePage("#page-list", {transition: "slide"});
 		};
 
 		// 日付を初期化
@@ -72,7 +72,6 @@
 			data.data.forEach(function(d){
 				$list.append(createItem(d));
 			});
-			$list.append(createMore(data.paging.next));
 			$list.listview('refresh');
 		};
 		// リストアイテムを作成
@@ -83,34 +82,7 @@
              		'<a href="#">' + data.title + '</a>' + 
          		'</li>'
 	        );
-			item[0].__data__ = data;
 			return item;
-		};
-		// read moreを作成
-		var createMore = function(next){
-			return next ? $('<li id="readmore" data-icon="false"><a href="#">Read more..</a></li>')
-					.on('tap', function(ev){
-						readMore(next);
-					}) : null;
-		};
-		var readMore = function(next) {
-			$.mobile.loading('show', {
-				text: "loading...",
-				textVisible: true
-			});
-			$.get(next, onLoadMore)
-				.fail(loadFail);
-		};
-		var onLoadMore = function(data) {
-			$.mobile.loading('hide');
-			$('#readmore').remove();
-			insertData(data);
-		};
-
-		// リストアイテムをタップした処理
-		var onTapItem = function(ev) {
-			detailData = this.__data__
-			$.mobile.changePage('#page-detail', {transition: "slide"});
 		};
 
 		$this.on('pageshow', function(){
@@ -121,31 +93,6 @@
 				insertData(data);
 			}
 		});
-		$list.on('tap', '.list-item', onTapItem);
-	});
-
-	/******************************************************
-	 * 詳細ページの初期化
-	 */
-	$(document).on('pageinit', '#page-detail', function(pev) {
-		console.log("init #page-detail");
-		var $this = $(this),
-			$detailTitle = $this.find('.ui-header .title'),
-			$detailTime = $('#detail-time'),
-			$detailList = $('#detail-list');
-
-		var updateDetail = function(data) {
-			$detailTitle.html(data.title);
-			$detailTime.html(data.datetime);
-			$detailList.empty();
-			data.headline.forEach(function(info){
-				$detailList.append($('<li>' + info + '</li>'));
-			});
-		};
-
-		$this.on('pageshow', function(){
-			detailData && updateDetail(detailData);
-		});		
 	});
 
 	var loadFail = function(data, status){
@@ -158,20 +105,17 @@
 				+ padding(date.getMonth() + 1) + "-"
 				+ padding(date.getDate());
 	};
-
 	var formatDatetime = function(date) {
 		return formatDate(date) + " "
 				+ padding(date.getHours()) + ":" 
 				+ padding(date.getMinutes()) + ":"
 				+ padding(date.getSeconds());
 	};
-
 	var addDay = function(date, day) {
 		var ndate = new Date();
 		ndate.setTime(date.getTime() + (day * 60 * 60 * 24 * 1000));
 		return ndate;
 	};
-
 	var padding = function(num) {
 		return  ('0' + num).slice(-2);
 	};

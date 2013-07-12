@@ -1,0 +1,15 @@
+#form {
+	margin-bottom: 20px;
+}
+#form .field > label {
+	display: inline-block;
+	width: 80px;
+}
+#form .field div.ui-select, #form div.ui-input-text {
+	display: inline-block;
+	width: 180px;
+}
+
+#form .buttons {
+	text-align: center;
+}
